@@ -104,6 +104,20 @@ struct Node* deleteFirstNode(struct Node* head) {
 	head->prev = NULL;
 	return head;
 }
+struct Node* reverse(struct Node* head) {
+	struct Node* ptr1 = head;
+	struct Node* ptr2 = ptr1->next;
+	ptr1->next = NULL;
+	ptr1->prev = ptr2;
+	while (ptr2 != NULL) {
+		ptr2->prev = ptr2->next;
+		ptr2->next = ptr1;
+		ptr1 = ptr2;
+		ptr2 = ptr2->prev;
+	}
+	head = ptr1;
+	return head;
+}
 
 void printForward(Node* head) {
 	while (head != NULL) {
@@ -137,6 +151,10 @@ int main() {
 	cout << "After deleting the first node"<<endl;
 	head = deleteFirstNode(head);
 	printForward(head);
+	cout<<"After reverse";
+	head = reverse(head);
+	printForward(head);
+
 	//struct Node* ptr;
 	//ptr = head;
 	//while (ptr != NULL) {
