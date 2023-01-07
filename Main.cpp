@@ -96,6 +96,14 @@ struct Node* addBeforeSpecificPos(struct Node* head, int data, int position) {
 	}
 	return head;
 }
+struct Node* deleteFirstNode(struct Node* head) {
+	struct Node* temp = head;
+	head = head->next;
+	free(head->prev);
+	//temp = NULL;
+	head->prev = NULL;
+	return head;
+}
 
 void printForward(Node* head) {
 	while (head != NULL) {
@@ -125,6 +133,9 @@ int main() {
 	printForward(head);
 	cout << "After addning another node after a specific position" << endl;
 	head = addBeforeSpecificPos(head, 90, 4);
+	printForward(head);
+	cout << "After deleting the first node"<<endl;
+	head = deleteFirstNode(head);
 	printForward(head);
 	//struct Node* ptr;
 	//ptr = head;
